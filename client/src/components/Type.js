@@ -10,7 +10,7 @@ export default function Type({ orderType }) {
 
   const loadItems = async (orderType) => {
     try {
-      let res = await axios.get(`http://localhost:3000/${orderType}`);
+      let res = await axios.get(`http://localhost:4000/${orderType}`);
       console.log(res);
     } catch (error) {
       console.error(error);
