@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function Products({ name, imagePath }) {
+export default function Products({ name, imagePath, updateItemCount }) {
+  const handleChange = (e) => {
+    const currentValue = e.target.value;
+    updateItemCount(name, currentValue);
+  };
+
   return (
     <div style={{ textAlign: "center" }}>
       <img
@@ -16,6 +21,7 @@ export default function Products({ name, imagePath }) {
           defaultValue={0}
           min="0"
           name="quantity"
+          onChange={handleChange}
         />
       </form>
     </div>
