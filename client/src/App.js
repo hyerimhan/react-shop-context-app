@@ -1,6 +1,6 @@
 import React from "react";
-import SummaryPage from "./pages/SummaryPage";
 import OrderPage from "./pages/OrderPage";
+// import SummaryPage from "./pages/SummaryPage";
 
 export default function App() {
   return (
