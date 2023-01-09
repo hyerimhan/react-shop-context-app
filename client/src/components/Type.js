@@ -44,7 +44,7 @@ export default function Type({ orderType }) {
     <>
       <h2>주문 종류</h2>
       <p>개별 가격</p>
-      <p>총 가격</p>
+      <p>총 가격: {orderData.totals[orderType]}</p>
       <div
         style={{
           display: "flex",

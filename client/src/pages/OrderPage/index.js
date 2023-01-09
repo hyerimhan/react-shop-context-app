@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Type from "../../components/Type";
+import { OrderContext } from "../../context/OrderContext";
 
-export default function OrderPage() {
+export default function OrderPage({ setStep }) {
+  const [orderData] = useContext(OrderContext);
   return (
     <div>
       <h1>Travel Products</h1>
@@ -13,9 +15,9 @@ export default function OrderPage() {
           <Type orderType="options" />
         </div>
         <div style={{ width: "50%" }}>
-          <h2>Total Price: </h2>
+          <h2>Total Price: {orderData.totals.total}</h2>
           <br />
-          <button>주문</button>
+          <button onClick={() => setStep(1)}>주문</button>
         </div>
       </div>
     </div>
