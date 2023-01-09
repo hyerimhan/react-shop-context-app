@@ -1,29 +1,42 @@
 import React, { useContext, useState } from "react";
 import { OrderContext } from "../../context/OrderContext";
 
-export default function SummaryPage() {
+export default function SummaryPage({ setStep }) {
   const [orderData] = useContext(OrderContext);
   const [checked, setChecked] = useState(false);
-
+  const productsArray = Array.from(orderData.products);
   const hasOptions = orderData.options.size > 0;
   let optionsDisplay = null;
-  if (hasOptions) {
-    const optionsArray = Array.from(orderData.options.keys());
-  }
 
-  const productsArray = Array.from(orderData.products);
   const productList = productsArray.map(([key, value]) => (
     <li key={key}>
       {value} {key}
     </li>
   ));
+
+  if (hasOptions) {
+    const optionsArray = Array.from(orderData.options.keys());
+    const optionList = optionsArray.map((key) => <li key={key}>{key}</li>);
+    optionsDisplay = (
+      <>
+        <h2>옵션: {orderData.totals.options}</h2>
+        <ul>{optionList}</ul>
+      </>
+    );
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStep(2);
+  };
+
   return (
     <div>
       <h1>주문 확인</h1>
       <h2>Products total: {orderData.totals.products}</h2>
       <ul>{productList}</ul>
       {optionsDisplay}
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           id="confirm-checkbox"
           type="checkbox"
